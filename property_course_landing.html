@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odhaluje Systém - Realitní Profesionál | Ladislav Jandáček</title>
+    <meta name="description" content="Video-workshop o tom, jak více než 160 lidí dokázalo přivést potenciálním kupcům realitní orgasmus a prodat nemovitost za nejvyšší cenu.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafbfc;
+            font-weight: 400;
+        }
+
+        .notice-bar {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .notice-bar a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hero-video-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0 60px;
+            text-align: center;
+        }
+
+        .main-headline {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .video-description {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-top: 30px;
+            opacity: 0.95;
+            font-weight: 400;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 20px 36px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            border: none;
+            cursor: pointer;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-button:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section:nth-child(even) {
+            background: #f5f7fa;
+        }
+
+        .section h2 {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .text-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-content p {
+            margin-bottom: 20px;
+        }
+
+        .text-content strong {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fff3cd 0%, #fff3cd 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #856404;
+        }
+
+        .video-section {
+            background: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .profile-section {
+            background: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .profile-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #ff6b35;
+            overflow: hidden;
+            margin: 0 auto 30px;
+        }
+
+        .profile-text {
+            width: 100%;
+        }
+
+        .profile-text .text-content {
+            text-align: left;
+            margin: 0;
+            max-width: none;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 32px 24px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .benefit-card .icon {
+            font-size: 2.4rem;
+            color: #667eea;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .form-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .form-container {
+            max-width: 520px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 40px 36px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-container h2 {
+            color: #333;
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .form-container p {
+            text-align: center;
+            margin-bottom: 28px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        #jotform-container {
+            margin-top: 20px;
+        }
+
+        .ps-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            padding: 60px 0;
+            position: relative;
+            border-top: 1px solid #dee2e6;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .ps-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ps-content h3 {
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .ps-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #444;
+            text-align: left;
+        }
+
+        .ps-content .cta-button {
+            background: #ff6b35;
+            color: white;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .ps-content .cta-button:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .faq-section {
+            background: #f5f7fa;
+            padding: 60px 0;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 16px;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+        }
+
+        .faq-question {
+            background: rgba(248, 250, 252, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+
+        .faq-question:hover {
+            background: rgba(241, 245, 249, 0.8);
+        }
+
+        .faq-answer {
+            padding: 20px 24px;
+            display: none;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: #d1d5db;
+            padding: 32px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero-video-section {
+                padding: 40px 0 50px;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .ps-section {
+                padding: 50px 0;
+            }
+
+            .form-container {
+                padding: 32px 24px;
+                margin: 0 16px;
+            }
+
+            .notice-bar {
+                font-size: 13px;
+                padding: 12px 16px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-container {
+                margin: 0 -20px;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-video-section {
+                padding: 32px 0 40px;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .ps-section {
+                padding: 40px 0;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .form-container {
+                margin: 0 -16px;
+                border-radius: 0;
+            }
+        }
+
+        /* Modern scroll animations with Intersection Observer */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced focus styles for better accessibility */
+        .cta-button:focus-visible,
+        .faq-question:focus-visible {
+            outline: 3px solid #ff6b35;
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .benefit-card,
+            .faq-item {
+                border: 2px solid currentColor;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="notice-bar">
+        🚨 POZOR: Tento systém používá pouze 5% realitních makléřů. <a href="#form">Získejte přístup zde.</a>
+    </div>
+
+    <section class="hero-video-section" id="video">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="main-headline">REALITNÍ PROFESIONÁL ODHALIL SYSTÉM, KTERÝ VÁM POMŮŽE VYTVOŘIT NEODOLATELNÝ INZERÁT PRO VAŠI NEMOVITOST</h1>
+                
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/04L7geTgVKk" 
+                                allowfullscreen 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <p class="video-description">Video-workshop o tom, jak již více než 160 lidí dokázalo přivést potenciálním kupcům realitní orgasmus, který je přinutil nemovitost koupit.</p>
+                
+                <a href="#form" class="cta-button" style="margin-top: 30px;">
+                    <i class="fas fa-arrow-down"></i> Získat nezávaznou konzultaci
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section animate-on-scroll">
+        <div class="container">
+            <div class="text-content">
+                <p><strong>Prodej nemovitostí na vlastní pěst je jednoduchý, ale…</strong></p>
+                <p>Při prodeji Vás budou čekat nástrahy na každém kroku a jen se štěstím, které by Vám pomohlo k výhře loterie, se nikdy nespálíte.</p>
+                <p><span class="highlight">Vůbec to tak ale nemusí být. Tohle vás zarazí, ale ANO.</span></p>
+                <p><strong>Byl jsem zaměstnanec McDonaldu. 12 let.</strong></p>
+                <p>Nastoupil jsem, když mi bylo 16. Postupně jsem se propracoval na nejvyšší manažerskou pozici a přešel do Tesca.</p>
+                <p>Měl jsem vše. Stabilní plat, jistou práci a dělal jsem to, co mě vždy bavilo - práce s lidmi.</p>
+                <p><strong>Vevnitř jsem trpěl. A to mě donutilo udělat TOHLE.</strong></p>
+                <p>Ano, nevěděl jsem do čeho jdu. Ano, přišel jsem o stabilní plat manažera.</p>
+                <p>Ale konečně jsem cítil, že žiji. Od té doby jsem již provedl více než 160 lidí největším rozhodnutím jejich života.</p>
+                <p>Těm, kdo nechtěli riskovat prodej nemovitosti na vlastní pěst a raději se obrátili na někoho, kdo má za sebou desítky let zkušeností v práci s lidmi.</p>
+                <p>A hlavně stovky prodaných nemovitostí s navýšením ceny o stovky tisíc korun.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section animate-on-scroll">
+        <div class="container">
+            <h2>Díky profesionálovi dosáhnete lepších výsledků</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Vyhnete se papírování</h3>
+                    <p>Nemusíte řešit složité právní dokumenty a byrokratické procesy</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon"><i class="fas fa-edit"></i></div>
+                    <h3>Nemusíte řešit tvorbu inzerátu</h3>
+                    <p>Vytvoříme pro vás neodolatelný inzerát, který přitáhne správné kupce</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Nestaráte se o legální stránku prodeje</h3>
+                    <p>Všechny právní náležitosti vyřídíme za vás profesionálně</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon"><i class="fas fa-euro-sign"></i></div>
+                    <h3>Prodáte nemovitost za nejvyšší cenu</h3>
+                    <p>Díky našemu systému dosáhnete ceny až o 500 000 Kč vyšší</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section animate-on-scroll">
+        <div class="container">
+            <div class="text-content">
+                <p><strong>Nebyl jsem u toho sám.</strong></p>
+                <p>U mého rozhodnutí stála pomocná ruka dobrého přítele. Bez toho byste toto nikdy nečetli.</p>
+                <p>Plno lidí však cizí pomoc vůbec nepotřebuje…</p>
+                <p>ale "profesionál" slouží jako průvodce. Vaše opora při tom největším rozhodnutí.</p>
+                <p><strong>Díky němu se zbavíte plno nudných záležitostí a dosáhnete lepších výsledků:</strong></p>
+                <p>I když už máte s prodejem zkušenosti, je jednoduché se někde spálit.</p>
+                <p>Pokud však pracujete s někým, kdo má za sebou desítky let zkušeností a přes 160 prodaných nemovitostí, máte jistotu, že o váš prodej se vy nemusíte starat.</p>
+                <p>Neztratíte tak statisíce kvůli průměrnému inzerátu nebo podcenění nemovitosti,</p>
+                <p>nebudete se stresovat kvůli papírování a</p>
+                <p>konečně budete mít čas se věnovat stěhování a rodině místo nekončících problémů spojených s prodejem starého domu nebo bytu.</p>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#form" class="cta-button">Rezervovat schůzku zdarma</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile-section animate-on-scroll">
+        <div class="container">
+            <div class="profile-content">
+                <div class="profile-image">
+                    <img src="https://bac7861b65.clvaw-cdnwnd.com/f555807789cef6da4972281a0b137d04/200007185-52bf452bf6/jandacek%20profilovka.jpeg?ph=bac7861b65" alt="Ladislav Jandáček" loading="lazy">
+                </div>
+                <div class="profile-text">
+                    <div class="text-content">
+                        <p>Dobrý den, jmenuji se Ladislav Jandáček a nemovitostem se už věnuji přes 10 let.</p>
+                        <p>V 16ti letech jsem pracoval v McDonaldu, kde jsem byl 12 let a vyzkoušel jsem si všechny možné pozice.</p>
+                        <p>Později jsem pracoval i jako manažer Tesca. Nabral jsem schopnosti vedení, řízení a hlavně jsem se stal <span class="highlight">MISTREM v komunikaci</span>.</p>
+                        <p>Vyhořel jsem a následně mě kamarád přivedl do realit, kterým se od té doby profesionálně věnuji.</p>
+                        <p><strong>Svým klientům jsem pomohl prodat přes 160 domů a bytů.</strong></p>
+                        <p>Postarám se o prodej Vaší nemovitosti za cenu až o 500 000 Kč vyšší než je tržní hodnota díky mému systému, který bezchybně funguje už řadu let.</p>
+                        <p>Záleží mi na tom, abych klientům zařídil příjemný prožitek z největšího kroku jejich života. Oni jsou hlavním hrdinou jejich příběhu a ten by rozhodně neměl být negativní.</p>
+                        <p>Příběhy klientů garantují, že se se mnou vyhnete veškerým nudným a časově náročným povinnostem spojenými s prodejem.</p>
+                        <p><strong>Pojďme vašemu příběhu napsat dobrý konec a ještě lepší nový začátek.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="form">
+        <div class="container">
+            <div class="form-container">
+                <h2><i class="fas fa-gift"></i> Získejte nezávaznou konzultaci</h2>
+                <p>Vyplňte formulář a do 24 hodin se vám ozvu s konkrétním návrhem pro váš prodej</p>
+                
+                <div id="jotform-container">
+                    <script type="text/javascript" src="https://form.jotform.com/jsform/251397076064360"></script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ps-section">
+        <div class="container">
+            <div class="ps-content">
+                <h3><strong>P.S.:</strong></h3>
+                <p>Při rezervaci schůzky dostanete checklist <strong>"Prodej bez fuckupů"</strong> jako bonus zdarma. 
+                Díky tomu nezapomenete na žádnou důležitou část přípravy k prodeji a samotného prodeje nemovitosti. 
+                Tento dokument používají profesionálové, kteří se prodejem nemovitostí živí desítky let a Vy ho dostanete zcela zdarma, 
+                stačí formulář výše a Vy ho ihned obdržíte do emailu.</p>
+                <a href="#form" class="cta-button">Získat checklist zdarma</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2>FAQ</h2>
+            
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                    <span>1. K čemu mi to vlastně je, když už jsem viděl video-workshop?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Získáte nezávislý pohled na vaši situaci. Upozorním vás na chyby, které by vás mohly stát statisíce, a navrhnu konkrétní kroky, jak připravit nemovitost tak, aby zaujala ty správné kupce. I jedna rada ve správný čas může znamenat rozdíl mezi "zájem bez výsledku" a "rychlý, výhodný prodej".</p>
+                </div>
+            </div>
+
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                    <span>2. Co se stane po vyplnění formuláře – budete mi hned volat?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Ne. Nejprve si v týmu projdeme váš příběh a připravíme si vše potřebné, abych vám mohl dát hodnotnou zpětnou vazbu. Ozvu se do 24–48 hodin telefonicky nebo e-mailem a domluvíme se na čase, který právě vám bude vyhovovat nejlépe. Všechno probíhá v klidu a bez jakéhokoliv tlaku.</p>
+                </div>
+            </div>
+
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                    <span>3. Proč potřebujete moje informace?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Abych vám nepředával obecné rady, ale konkrétní návrh šitý na míru vaší situaci. Každý prodej je jiný a jen díky několika základním informacím (např. typ nemovitosti, lokalita, časový rámec) vám můžu opravdu pomoct.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ladislav Jandáček - Realitní služby</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToVideo() {
+            const videoElement = document.querySelector('.hero-video-section');
+            if (videoElement) {
+                videoElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.fas');
+            const isActive = answer.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.faq-question .fas').forEach(icon => {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            });
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.setAttribute('aria-expanded', 'false');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                answer.classList.add('active');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                element.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Modern Intersection Observer for better performance
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Enhanced scroll animations function
+        function initializeScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Keep original FAQ functionality - DO NOT CHANGE!
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.fas');
+            const isActive = answer.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.faq-question .fas').forEach(icon => {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            });
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.setAttribute('aria-expanded', 'false');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                answer.classList.add('active');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                element.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Optimized DOM ready function
+        function initializePage() {
+            initializeScrollAnimations();
+            
+            // Enhanced smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add keyboard navigation for FAQ
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQ(this);
+                    }
+                });
+            });
+        }
+
+        // Initialize everything when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePage);
+        } else {
+            initializePage();
+        }
+
+        // Performance optimization
+        window.addEventListener('load', () => {
+            console.log('✅ Realitní landing page fully loaded and optimized');
+        });
+    </script>
+</body>
+</html>

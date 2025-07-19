@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreePBX 17 Server Setup Guide - Debian 12</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #a0aec0;
+        }
+
+        .section {
+            background: rgba(45, 55, 72, 0.3);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .section h3 {
+            color: #9f7aea;
+            font-size: 1.4rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .warning {
+            background: rgba(245, 101, 101, 0.1);
+            border-left: 4px solid #f56565;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .info {
+            background: rgba(66, 153, 225, 0.1);
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: rgba(72, 187, 120, 0.1);
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .credentials {
+            background: rgba(128, 90, 213, 0.1);
+            border: 1px solid #805ad5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .credentials h4 {
+            color: #b794f6;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            position: sticky;
+            top: 20px;
+            background: rgba(26, 32, 44, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav a {
+            color: #a0aec0;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #718096;
+        }
+
+        .search-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-box {
+            background: rgba(26, 32, 44, 0.95);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            width: 250px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            width: 300px;
+        }
+
+        .search-box::placeholder {
+            color: #a0aec0;
+        }
+
+        .search-toggle {
+            display: none;
+            background: rgba(26, 32, 44, 0.95);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            color: #667eea;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .search-toggle:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.05);
+        }
+
+        .search-navigation {
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-navigation.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-nav-btn {
+            background: rgba(26, 32, 44, 0.95);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            color: #667eea;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .search-nav-btn:hover:not(:disabled) {
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.1);
+        }
+
+        .search-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .search-counter {
+            background: rgba(26, 32, 44, 0.95);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            padding: 5px 12px;
+            color: #a0aec0;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .highlight.current {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
+            .search-box {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 280px;
+            }
+
+            .search-box.mobile-open {
+                display: block;
+                animation: slideDown 0.3s ease;
+            }
+
+            .search-toggle {
+                display: flex;
+            }
+
+            .search-navigation {
+                position: absolute;
+                top: 120px;
+                right: 0;
+                flex-direction: column;
+                background: rgba(26, 32, 44, 0.95);
+                border-radius: 10px;
+                padding: 10px;
+                border: 1px solid rgba(102, 126, 234, 0.3);
+            }
+
+            .search-counter {
+                margin-bottom: 8px;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav ul {
+                flex-direction: column;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+
+        .copied {
+            background: #48bb78 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FreePBX 17 Server Setup</h1>
+            <p>Complete installation guide for Debian 12 with Asterisk 21, Docker services, and AI integration</p>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#prerequisites">Prerequisites</a></li>
+                <li><a href="#freepbx-install">FreePBX Installation</a></li>
+                <li><a href="#docker-services">Docker Services</a></li>
+                <li><a href="#ai-assistant">AI Assistant</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                <li><a href="#credentials">Credentials</a></li>
+            </ul>
+        </nav>
+
+        <section id="prerequisites" class="section">
+            <h2>🔧 System Prerequisites</h2>
+            
+            <h3>Server Configuration</h3>
+            <div class="credentials">
+                <h4>System Details</h4>
+                <strong>OS:</strong> Debian 12.9.0<br>
+                <strong>Hostname:</strong> server-debian<br>
+                <strong>Domain:</strong> server-debian<br>
+                <strong>Partitions:</strong> Separate /home, /var & /tmp
+            </div>
+
+            <h3>Prevent Server Sleep/Shutdown Issues</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo nano /etc/systemd/logind.conf
+
+# Add these lines:
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+IdleAction=ignore
+IdleActionSec=0</pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo nano /etc/ssh/sshd_config
+
+# Add these lines:
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
+sudo systemctl restart sshd
+sudo systemctl disable powerprofiles-daemon
+sudo systemctl stop powerprofiles-daemon
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target</pre>
+            </div>
+
+            <h3>Initial System Update</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>apt-get update && apt-get upgrade -y</pre>
+            </div>
+        </section>
+
+        <section id="freepbx-install" class="section">
+            <h2>📞 FreePBX 17 Installation</h2>
+
+            <div class="info">
+                <strong>Quick Installation Method (Recommended):</strong> This method uses the official Sangoma installation script.
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>cd /tmp
+wget https://github.com/FreePBX/sng_freepbx_debian_install/raw/master/sng_freepbx_debian_install.sh -O /tmp/sng_freepbx_debian_install.sh
+bash /tmp/sng_freepbx_debian_install.sh</pre>
+            </div>
+
+            <h3>Manual Installation (Alternative Method)</h3>
+            
+            <div class="warning">
+                <strong>Note:</strong> Use this method only if the quick installation fails. All libraries must be installed one by one.
+            </div>
+
+            <h4>Install Required Packages</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>apt install -y util-linux apache2 mariadb-server mariadb-client php php-curl php-cli php-pdo php-mysql php-pear php-gd php-mbstring php-intl php-bcmath curl sox mpg123 lame ffmpeg sqlite3 git unixodbc sudo dirmngr postfix asterisk odbc-mariadb php-ldap nodejs npm pkg-config libicu-dev</pre>
+            </div>
+
+            <h4>Prepare Asterisk</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>systemctl stop asterisk
+systemctl disable asterisk
+cd /etc/asterisk
+mkdir DIST
+mv * DIST
+cp DIST/asterisk.conf .
+sed -i 's/(!)//g' asterisk.conf
+touch modules.conf
+touch cdr.conf</pre>
+            </div>
+
+            <h4>Configure Apache Web Server</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo sed -i 's/\(^upload_max_filesize = \).*/\120M/' /etc/php/8.3/apache2/php.ini
+sudo sed -i 's/\(^memory_limit = \).*/\1256M/' /etc/php/8.3/apache2/php.ini
+sudo sed -i 's/^\(User\|Group\).*/\1 asterisk/' /etc/apache2/apache2.conf
+sudo sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+sudo rm /var/www/html/index.html</pre>
+            </div>
+
+            <h4>Configure ODBC</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo cat <<EOF > /etc/odbcinst.ini
+[MySQL]
+Description = ODBC for MySQL (MariaDB)
+Driver = /usr/lib/x86_64-linux-gnu/odbc/libmaodbc.so
+FileUsage = 1
+EOF
+
+sudo cat <<EOF > /etc/odbc.ini
+[MySQL-asteriskcdrdb]
+Description = MySQL connection to 'asteriskcdrdb' database
+Driver = MySQL
+Server = localhost
+Database = asteriskcdrdb
+Port = 3306
+Socket = /var/run/mysqld/mysqld.sock
+Option = 3
+EOF</pre>
+            </div>
+
+            <h4>Install FreePBX Core</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>cd /usr/local/src
+wget http://mirror.freepbx.org/modules/packages/freepbx/7.4/freepbx-16.0-latest.tgz
+tar zxvf freepbx-16.0-latest.tgz
+cd /usr/local/src/freepbx/
+./start_asterisk start
+./install -n</pre>
+            </div>
+
+            <h4>Complete Installation</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre># Install all modules
+fwconsole ma installall
+
+# Apply configuration
+fwconsole reload
+
+# Set sound file symlinks
+cd /usr/share/asterisk
+mv sounds sounds-DIST
+ln -s /var/lib/asterisk/sounds sounds
+
+# Restart FreePBX
+fwconsole restart</pre>
+            </div>
+
+            <h4>Set up SystemD Service</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>cat <<EOF > /etc/systemd/system/freepbx.service
+[Unit]
+Description=FreePBX VoIP Server
+After=mariadb.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/fwconsole start -q
+ExecStop=/usr/sbin/fwconsole stop -q
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable freepbx</pre>
+            </div>
+
+            <h3>Important Configuration</h3>
+            <div class="info">
+                <strong>SIP Settings:</strong> If you can't hear anything during calls, go to Settings → SIP Settings → Local Networks and set to: <code>192.168.1.0/255.255.255.0</code>
+            </div>
+
+            <h3>Firewall Configuration</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre># Trust local network (run from server console)
+fwconsole firewall trust 192.168.1.0/24
+fwconsole firewall restart</pre>
+            </div>
+        </section>
+
+        <section id="docker-services" class="section">
+            <h2>🐳 Docker Services Installation</h2>
+
+            <h3>Install Docker</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>curl -fsSL https://get.docker.com | sudo sh
+sudo systemctl enable --now docker</pre>
+            </div>
+
+            <h3>Home Assistant</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>mkdir -p /home/docker/HomeAssistant
+nano /home/docker/HomeAssistant/docker-compose.yml</pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>version: "3.9"
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:latest
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /home/docker/HomeAssistant/config:/config
+    ports:
+      - "8123:8123"</pre>
+            </div>
+
+            <h3>Node-RED</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>mkdir -p /home/docker/NodeRED
+nano /home/docker/NodeRED/docker-compose.yml</pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>version: "3.9"
+services:
+  nodered:
+    container_name: nodered
+    image: nodered/node-red:latest
+    restart: unless-stopped
+    volumes:
+      - /home/docker/NodeRED/data:/data
+    ports:
+      - "1880:1880"</pre>
+            </div>
+
+            <h3>ERPNext</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>mkdir erpnext_docker && cd erpnext_docker
+nano docker-compose.yml</pre>
+            </div>
+
+            <div class="success">
+                Complete ERPNext docker-compose.yml configuration is available in the original document. Access at: <code>http://&lt;server-ip&gt;:8080</code>
+            </div>
+
+            <h3>Start All Services</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre># Start each service in its respective directory
+docker-compose up -d</pre>
+            </div>
+
+            <h3>Apache Reverse Proxy Setup</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo a2enmod proxy proxy_http rewrite
+sudo nano /etc/apache2/sites-available/ha.local.conf</pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>&lt;VirtualHost *:80&gt;
+    ServerName ha.local
+    # Proxy for Home Assistant
+    ProxyPass /home-assistant/ http://localhost:8123/
+    ProxyPassReverse /home-assistant/ http://localhost:8123/
+&lt;/VirtualHost&gt;</pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo a2ensite ha.local.conf
+sudo systemctl restart apache2</pre>
+            </div>
+        </section>
+
+        <section id="ai-assistant" class="section">
+            <h2>🤖 AI Assistant Integration</h2>
+
+            <h3>Home Assistant AI Setup</h3>
+            <div class="info">
+                Add these integrations in Home Assistant: Settings → Devices & Services → Add Integration
+                <ul>
+                    <li>Google Generative AI (Gemini)</li>
+                    <li>Wyoming Protocol</li>
+                </ul>
+            </div>
+
+            <h3>Wyoming Whisper STT</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>nano whisper-docker-compose.yml</pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>services:
+  wyoming-whisper:
+    image: rhasspy/wyoming-whisper
+    command: --model small --language cs --uri tcp://0.0.0.0:10300
+    ports:
+      - "10300:10300"
+    restart: unless-stopped</pre>
+            </div>
+
+            <h3>Voice over IP Integration</h3>
+            <div class="warning">
+                <strong>Port Conflict:</strong> Change VoIP port from 5060 to 5062 (FreePBX uses 5060)
+            </div>
+
+            <h3>FreePBX Trunk Configuration</h3>
+            <p>Create a new SIP chan_pjsip trunk with these settings:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre># General Settings:
+Trunk Name: HA_AI_Assistant
+Outbound CallerID: AI Assistant
+
+# Dialed Number Manipulation:
+Prepend: (empty)
+Prefix: (empty)
+
+# pjSIP Settings:
+Host: 192.168.1.44:5062  # Your HA server IP
+Port: 5062
+
+# Advanced:
+AOR: sip:999@192.168.1.44:5062
+AOR Contact: sip:999@192.168.1.44:5062
+
+# Codecs: Enable OPUS (drag to top)</pre>
+            </div>
+
+            <h3>Outbound Route Configuration</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre># Route Settings:
+Route Name: AI_Assistant_Route
+Trunk Sequence: HA_AI_Assistant
+
+# Dial Patterns:
+Pattern: 999
+Prepend: (empty)
+Prefix: (empty)</pre>
+            </div>
+
+            <div class="success">
+                <strong>Test:</strong> Call extension 999 from any phone to reach the AI assistant!
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="section">
+            <h2>🔧 Troubleshooting</h2>
+
+            <h3>FreePBX Core & Voicemail Issues</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo fwconsole ma upgrade core
+sudo fwconsole ma upgrade voicemail
+sudo systemctl restart ucp postfix apache2
+sudo fwconsole chown
+sudo fwconsole reload</pre>
+            </div>
+
+            <h3>Apache Permission Issues</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo chown -R www-data:www-data /var/www/html/admin
+sudo chmod -R 755 /var/www/html/admin
+sudo mkdir -p /var/www/html/admin/assets/less/cache/
+sudo chown -R www-data:www-data /var/www/html/admin/assets/less/cache/
+sudo chmod -R 775 /var/www/html/admin/assets/less/cache/
+sudo systemctl restart apache2</pre>
+            </div>
+
+            <h3>Database Configuration Issues</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>mysql -u root -p
+USE asterisk;
+SHOW CREATE TABLE ivr_details;
+ALTER TABLE ivr_details MODIFY description VARCHAR(500);
+exit
+systemctl restart mysql
+fwconsole restart</pre>
+            </div>
+
+            <h3>Upload Size Limits</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>sudo nano /etc/php/*/apache2/php.ini
+
+# Find and change:
+upload_max_filesize = 100M
+post_max_size = 100M
+memory_limit = 256M
+max_execution_time = 300
+max_input_time = 300
+
+sudo nano /etc/apache2/apache2.conf
+# Add:
+LimitRequestBody 104857600
+
+sudo systemctl restart apache2</pre>
+            </div>
+
+            <h3>Network IP Check</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre>nmcli -p device show</pre>
+            </div>
+        </section>
+
+        <section id="credentials" class="section">
+            <h2>🔑 System Credentials</h2>
+
+            <div class="credentials">
+                <h4>System Login</h4>
+                <strong>Username:</strong> andulkapilulka<br>
+                <strong>Password:</strong> skibidiandulka<br>
+                <strong>Root Password:</strong> skibiditornikidis
+            </div>
+
+            <div class="credentials">
+                <h4>FreePBX Web Interface</h4>
+                <strong>Username:</strong> andulkapilulka<br>
+                <strong>Password:</strong> skibidiandulka<br>
+                <strong>URL:</strong> http://server-ip/admin
+            </div>
+
+            <div class="credentials">
+                <h4>Node-RED Asterisk AMI</h4>
+                <strong>Username:</strong> nodered<br>
+                <strong>Password:</strong> 369859+rotad<br>
+                <strong>Port:</strong> 5038
+            </div>
+
+            <div class="credentials">
+                <h4>Home Assistant</h4>
+                <strong>Username:</strong> mobil-přízemí<br>
+                <strong>Password:</strong> hedlabedla<br>
+                <strong>URL:</strong> http://server-ip:8123
+            </div>
+
+            <div class="credentials">
+                <h4>ERPNext</h4>
+                <strong>Username:</strong> josef.roth@outlook.cz<br>
+                <strong>Password:</strong> nenavidimnegry<br>
+                <strong>URL:</strong> http://server-ip:8080
+            </div>
+
+            <div class="credentials">
+                <h4>Service Ports</h4>
+                <strong>FreePBX:</strong> 80/443<br>
+                <strong>Home Assistant:</strong> 8123<br>
+                <strong>Node-RED:</strong> 1880<br>
+                <strong>ERPNext:</strong> 8080<br>
+                <strong>Nextcloud:</strong> 1000<br>
+                <strong>Whisper STT:</strong> 10300
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>🚀 FreePBX 17 Server Setup Complete | Debian 12 + Asterisk 21 + Docker Services + AI Integration</p>
+            <p>For support, refer to the <a href="https://sangomakb.atlassian.net/wiki/spaces/FP/pages/10682545/How+to+Install+FreePBX+17+on+Debian+12+with+Asterisk+21" style="color: #667eea;">official documentation</a></p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.parentElement;
+            const code = codeBlock.querySelector('pre').textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

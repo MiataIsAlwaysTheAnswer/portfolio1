@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalex - Marketing pro instalatéry, který konečně přivede zakázky</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Marketing pro instalatéry a topenáře, který skutečně funguje. Přestaňte pálit peníze za neviditelnou reklamu. Získejte více zakázek s našimi expertními Google Ads kampaněmi.">
+    <meta name="keywords" content="marketing pro instalatéry, google ads instalatéři, topenáři marketing, reklama instalatérské služby, více zakázek">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Instalex - Marketing pro instalatéry, který přivede zakázky">
+    <meta property="og:description" content="Specializujeme se výhradně na marketing pro instalatéry. Naše kampaně cílí na zákazníky v nouzi - právě když vás nejvíc potřebují.">
+    <meta property="og:type" content="website">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Color Variables - More Blue Dominant */
+            --primary-blue: #1e40af;
+            --secondary-blue: #1d4ed8;
+            --light-blue: #2563eb;
+            --dark-blue: #1e3a8a;
+            --accent-blue: #3b82f6;
+            --accent-green: #059669;
+            --dark-green: #047857;
+            --text-dark: #1e3a8a;
+            --text-light: #475569;
+            --background-white: #ffffff;
+            --background-gray: #f1f5f9;
+            --background-blue: #eff6ff;
+            --border-gray: #cbd5e1;
+            
+            /* Font Variables */
+            --font-primary: 'Poppins', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
+            
+            /* Container and Layout Variables */
+            --container-max-width: 1000px;
+            --container-padding: 2rem;
+            --mobile-padding: 1rem;
+            
+            /* Spacing Variables */
+            --section-padding: 5rem 0;
+            --mobile-section-padding: 3rem 0;
+            
+            /* Animation Variables */
+            --transition-smooth: all 0.3s ease;
+            --hover-transform: translateY(-2px);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-white);
+            overflow-x: hidden;
+        }
+        
+        /* Background Water Effect - More Blue */
+        .water-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(29, 78, 216, 0.08) 100%);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(30, 64, 175, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+            z-index: -1;
+            animation: waterFlow 25s ease-in-out infinite;
+        }
+        
+        @keyframes waterFlow {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            33% { transform: translateX(-10px) translateY(-5px); }
+            66% { transform: translateX(5px) translateY(-10px); }
+        }
+        
+        /* Container Styles - Narrower and Centered */
+        .container {
+            max-width: var(--container-max-width);
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
+        }
+        
+        /* Header Styles - Responsive Phone Button */
+        .header-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--accent-blue);
+            z-index: 1000;
+            padding: 0.75rem 0;
+            transition: var(--transition-smooth);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-extrabold);
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .cta-phone {
+            background: linear-gradient(135deg, var(--accent-green), var(--dark-green));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            box-shadow: 0 3px 12px rgba(5, 150, 105, 0.3);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            flex-shrink: 1;
+            min-width: 0;
+        }
+        
+        .cta-phone:hover {
+            transform: var(--hover-transform);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            color: white;
+        }
+        
+        /* Hero Section - More Blue Focused */
+        .hero-section {
+            padding: 7rem 0 5rem;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.08) 0%, rgba(239, 246, 255, 0.9) 100%);
+            position: relative;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: var(--font-weight-extrabold);
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: var(--font-weight-semibold);
+            border-radius: 50px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
+            color: white !important;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: var(--hover-transform);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.5);
+            color: white !important;
+        }
+        
+        .btn-outline-custom {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: var(--font-weight-semibold);
+            border-radius: 50px;
+            background: transparent;
+            transition: var(--transition-smooth);
+        }
+        
+        .btn-outline-custom:hover {
+            background: var(--primary-blue);
+            color: white !important;
+            transform: var(--hover-transform);
+        }
+        
+        /* Section Styles - Better Spacing */
+        .section-padding {
+            padding: var(--section-padding);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-bg-gray {
+            background: var(--background-gray);
+        }
+        
+        .section-bg-blue {
+            background: var(--background-blue);
+        }
+        
+        /* Grid Layout for 4 and 3 columns */
+        .grid-4-cols {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .grid-3-cols {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-4-cols {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .grid-3-cols {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .grid-4-cols {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        
+        /* Comparison Table - Always Two Columns */
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.15);
+            margin: 2rem 0;
+            border: 2px solid var(--accent-blue);
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid var(--border-gray);
+            min-height: 80px;
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-cell {
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        
+        .comparison-cell.negative {
+            background: rgba(239, 68, 68, 0.08);
+            border-right: 1px solid var(--border-gray);
+        }
+        
+        .comparison-cell.positive {
+            background: rgba(30, 64, 175, 0.08);
+        }
+        
+        .comparison-icon {
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
+        }
+        
+        .comparison-icon.negative {
+            color: #ef4444;
+        }
+        
+        .comparison-icon.positive {
+            color: var(--primary-blue);
+        }
+        
+        .comparison-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+        
+        /* Services Section */
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition-smooth);
+            height: 100%;
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: var(--hover-transform);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .service-description {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Know-how Section - Enhanced with Points */
+        .knowhow-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .knowhow-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .knowhow-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .knowhow-title {
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .knowhow-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .knowhow-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .knowhow-point-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .knowhow-point-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        /* Contact Form Section */
+        .contact-section {
+            background: var(--background-gray);
+        }
+        
+        .form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-control {
+            border: 2px solid var(--border-gray);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
+        
+        .form-select {
+            border: 2px solid var(--border-gray);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            height: 100%;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive Design - Mobile First */
+        @media (max-width: 576px) {
+            .container {
+                padding-left: var(--mobile-padding);
+                padding-right: var(--mobile-padding);
+            }
+            
+            .section-padding {
+                padding: var(--mobile-section-padding);
+            }
+            
+            .header-fixed {
+                padding: 0.5rem 0;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+            
+            .cta-phone {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+                border-radius: 20px;
+            }
+            
+            .cta-phone .fas {
+                font-size: 0.7rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            
+            .comparison-cell {
+                padding: 1rem;
+                gap: 0.6rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .comparison-text {
+                font-size: 0.85rem;
+            }
+            
+            .service-card {
+                padding: 1.5rem;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .footer-main {
+                padding: 3rem 0 1.5rem;
+            }
+            
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+            
+            .footer-bottom-links {
+                text-align: center;
+                margin-top: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .comparison-cell {
+                padding: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .comparison-cell {
+                padding: 1.8rem;
+            }
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Footer Styles */
+        .footer-section {
+            background: linear-gradient(135deg, var(--text-dark), var(--dark-blue));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue), var(--accent-green));
+        }
+        
+        .footer-main {
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-brand {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-extrabold);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo:hover {
+            color: var(--accent-blue);
+        }
+        
+        .footer-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .footer-contact-item i {
+            width: 18px;
+            color: var(--accent-blue);
+        }
+        
+        .footer-contact-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        
+        .footer-contact-item a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .footer-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent-blue);
+        }
+        
+        .footer-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-menu li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+        }
+        
+        .footer-menu a:hover {
+            color: var(--accent-blue);
+            padding-left: 5px;
+        }
+        
+        .footer-cta-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-green), var(--dark-green));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            box-shadow: 0 3px 12px rgba(5, 150, 105, 0.3);
+        }
+        
+        .footer-cta-btn:hover {
+            transform: var(--hover-transform);
+            color: white;
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 0;
+        }
+        
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom-links {
+            text-align: right;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .separator {
+            margin: 0 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        /* Loading Optimization */
+        .img-placeholder {
+            background: linear-gradient(135deg, var(--border-gray), #f3f4f6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Water Background Effect -->
+    <div class="water-background"></div>
+    
+    <!-- Fixed Header -->
+    <header class="header-fixed">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <span>Instalex</span>
+                </a>
+                <a href="tel:+420123456789" class="cta-phone">
+                    <i class="fas fa-phone"></i>
+                    <span class="d-none d-sm-inline">VOLEJTE NONSTOP: </span>+420 123 456 789
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">Marketing pro instalatéry, který Vám konečně přivede zakázky.</h1>
+                    <p class="hero-subtitle">Přestaňte pálit peníze za neviditelnou reklamu. My rozumíme vašemu řemeslu a zacílíme na zákazníky, kteří Vás potřebují PRÁVĚ TEĎ.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary-custom">Chci více zakázek</a>
+                        <a href="tel:+420123456789" class="btn btn-outline-custom">Nezávazně zavolat</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="img-placeholder" style="height: 400px; margin-top: 2rem;">
+                        Hero Image Placeholder<br>
+                        <small>Moderní grafika s instalatérskými nástroji a rostoucím grafem</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Comparison Section -->
+    <section id="comparison" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Proč běžný marketing u instalatérů selhává</h2>
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div class="comparison-cell negative">
+                        <div class="comparison-icon negative">👎</div>
+                        <div class="comparison-text">
+                            <strong>Jak to dělají oni (Běžné agentury)</strong>
+                        </div>
+                    </div>
+                    <div class="comparison-cell positive">
+                        <div class="comparison-icon positive">👍</div>
+                        <div class="comparison-text">
+                            <strong>Jak to děláme my (Instalex)</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell negative">
+                        <div class="comparison-icon negative"><i class="fas fa-times"></i></div>
+                        <div class="comparison-text">Cílí na obecná klíčová slova jako "opravy v domácnosti".</div>
+                    </div>
+                    <div class="comparison-cell positive">
+                        <div class="comparison-icon positive"><i class="fas fa-check"></i></div>
+                        <div class="comparison-text">Cílíme na "havárie voda praha" nebo "netopí topení votice", protože víme, co lidé v nouzi hledají.</div>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell negative">
+                        <div class="comparison-icon negative"><i class="fas fa-times"></i></div>
+                        <div class="comparison-text">Spouští reklamy po celé ČR, i když jste lokální firma.</div>
+                    </div>
+                    <div class="comparison-cell positive">
+                        <div class="comparison-icon positive"><i class="fas fa-check"></i></div>
+                        <div class="comparison-text">Geografii bereme smrtelně vážně. Cílíme s přesností na město a okolí, kde skutečně působíte.</div>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell negative">
+                        <div class="comparison-icon negative"><i class="fas fa-times"></i></div>
+                        <div class="comparison-text">Reportují vám počet "kliknutí" a "zobrazení".</div>
+                    </div>
+                    <div class="comparison-cell positive">
+                        <div class="comparison-icon positive"><i class="fas fa-check"></i></div>
+                        <div class="comparison-text">Nás zajímá jediná metrika: Kolikrát vám za den zazvonil telefon s reálnou poptávkou.</div>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell negative">
+                        <div class="comparison-icon negative"><i class="fas fa-times"></i></div>
+                        <div class="comparison-text">Vytváří složité formuláře, které v panice nikdo nevyplní.</div>
+                    </div>
+                    <div class="comparison-cell positive">
+                        <div class="comparison-icon positive"><i class="fas fa-check"></i></div>
+                        <div class="comparison-text">Naším cílem je, aby zákazník co nejrychleji našel vaše číslo a okamžitě vám zavolal.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section - Now 4 blocks -->
+    <section id="services" class="section-padding section-bg-gray">
+        <div class="container">
+            <h2 class="section-title">Co pro Vás uděláme</h2>
+            <div class="grid-4-cols">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3 class="service-title">Google Ads nastavené expertem</h3>
+                    <p class="service-description">Kampaně, které osloví zákazníky v moment krize. Žádné zbytečné prokliky, jen relevantní poptávky.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="service-title">Poptávkové weby</h3>
+                    <p class="service-description">Přehledný web s jediným cílem – přivést vám novou zakázku. Rychlý a s telefonem na prvním místě.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">ROI analýza</h3>
+                    <p class="service-description">Optimalizujeme kampaně tak, aby každá koruna přinesla maximální zisk. Pravidelné reporty výkonnosti.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="service-title">Audit kampaní</h3>
+                    <p class="service-description">Nabídka auditu vašich aktuálních kampaní. Zjistíme, kde tratíte peníze a jak to napravit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Know-how Section - Now with Points -->
+    <section id="knowhow" class="section-padding knowhow-section">
+        <div class="container">
+            <div class="knowhow-content">
+                <h2 class="section-title knowhow-title">Naše know-how: Rozumíme psychologii havárie</h2>
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <ul class="knowhow-points">
+                            <li class="knowhow-point">
+                                <div class="knowhow-point-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="knowhow-point-text">
+                                    <strong>Krizová situace ≠ běžný nákup.</strong> Zákazník ve stresu nehledá krásné logo, ale dostupnost a spolehlivost.
+                                </div>
+                            </li>
+                            
+                            <li class="knowhow-point">
+                                <div class="knowhow-point-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="knowhow-point-text">
+                                    <strong>Okamžitá reakce je klíčová.</strong> Naše reklamy dodají pocit jistoty a přimějí zákazníka zvednout telefon během několika sekund.
+                                </div>
+                            </li>
+                            
+                            <li class="knowhow-point">
+                                <div class="knowhow-point-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="knowhow-point-text">
+                                    <strong>Mluvíme jazykem vašich zákazníků.</strong> "Ucpaný odpad" a "výměna bojleru" přivedou kvalitnější poptávky než obecné "instalatérské práce".
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <h2 class="section-title">Připraveni na víc práce (a méně starostí)?</h2>
+            <p class="text-center mb-5 text-muted">Vyplňte formulář nebo rovnou zavolejte. Do 24 hodin se vám ozveme s prvními nápady, jak vám pomoci k reálným zakázkám.</p>
+            
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="form-container">
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Jméno a příjmení *</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">E-mail *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Telefon *</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="type" class="form-label">Jsem... *</label>
+                                    <select class="form-select" id="type" required>
+                                        <option value="">Vyberte možnost</option>
+                                        <option value="instalater">Instalatér/Řemeslník</option>
+                                        <option value="prodejna">Prodejna/E-shop</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Stručná zpráva</label>
+                                    <textarea class="form-control" id="message" rows="4" placeholder="Popište stručně, s čím potřebujete pomoct..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gdpr" required>
+                                        <label class="form-check-label" for="gdpr">
+                                            Souhlasím se zpracováním osobních údajů (GDPR) *
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary-custom w-100">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        Odeslat nezávaznou poptávku
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <h3 class="mb-4">Přímý kontakt</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Telefon</strong><br>
+                                <a href="tel:+420123456789" class="text-white text-decoration-none">+420 123 456 789</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>E-mail</strong><br>
+                                <a href="mailto:info@instalex.cz" class="text-white text-decoration-none">info@instalex.cz</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Působíme</strong><br>
+                                Celá ČR
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-top border-light border-opacity-25">
+                            <p class="mb-0 opacity-75">
+                                <i class="fas fa-clock me-2"></i>
+                                Odpovídáme do 24 hodin
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <!-- Main Footer Content -->
+            <div class="footer-main">
+                <div class="row g-4">
+                    <!-- Company Info -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand">
+                            <a href="#" class="footer-logo">
+                                <div class="footer-logo-icon">
+                                    <i class="fas fa-wrench"></i>
+                                </div>
+                                Instalex
+                            </a>
+                            <p class="footer-description">
+                                Specializovaná marketingová agentura pro instalatéry a topenáře. 
+                                Přivádíme vám zakázky, které skutečně potřebujete.
+                            </p>
+                            <div class="footer-contact">
+                                <div class="footer-contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <a href="tel:+420123456789">+420 123 456 789</a>
+                                </div>
+                                <div class="footer-contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:info@instalex.cz">info@instalex.cz</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-links">
+                            <h5 class="footer-title">Naše služby</h5>
+                            <ul class="footer-menu">
+                                <li><a href="#services">Google Ads</a></li>
+                                <li><a href="#services">Poptávkové weby</a></li>
+                                <li><a href="#services">ROI analýza</a></li>
+                                <li><a href="#services">Audit kampaní</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-links">
+                            <h5 class="footer-title">Rychlé odkazy</h5>
+                            <ul class="footer-menu">
+                                <li><a href="#hero">Úvod</a></li>
+                                <li><a href="#comparison">Proč my</a></li>
+                                <li><a href="#knowhow">Know-how</a></li>
+                                <li><a href="#contact">Kontakt</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Legal -->
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-links">
+                            <h5 class="footer-title">Právní</h5>
+                            <ul class="footer-menu">
+                                <li><a href="/gdpr">GDPR</a></li>
+                                <li><a href="/obchodni-podminky">Obchodní podmínky</a></li>
+                                <li><a href="/ochrana-udaju">Ochrana údajů</a></li>
+                                <li><a href="/cookies">Cookies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA -->
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-cta">
+                            <h5 class="footer-title">Začněte ještě dnes</h5>
+                            <p class="footer-cta-text">Nezávazná konzultace zdarma</p>
+                            <a href="#contact" class="footer-cta-btn">
+                                <i class="fas fa-arrow-right"></i>
+                                Kontaktujte nás
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="footer-copyright">
+                            &copy; 2024 Instalex. Všechna práva vyhrazena.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-bottom-links">
+                            <span>Marketing pro instalatéry</span>
+                            <span class="separator">|</span>
+                            <span>Působíme v celé ČR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Configuration Variables
+        const CONFIG = {
+            phone: '+420123456789',
+            email: 'info@instalex.cz',
+            companyName: 'Instalex',
+            // Google Analytics ID (replace with actual)
+            gaId: 'GA_MEASUREMENT_ID',
+            // Form submission endpoint (WordPress integration)
+            formEndpoint: '/wp-admin/admin-ajax.php'
+        };
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header-fixed').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header-fixed');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData();
+            formData.append('action', 'instalex_contact_form');
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('type', document.getElementById('type').value);
+            formData.append('message', document.getElementById('message').value);
+            formData.append('gdpr', document.getElementById('gdpr').checked);
+            
+            // Submit button loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Odesílám...';
+            submitBtn.disabled = true;
+            
+            // WordPress AJAX submission
+            fetch(CONFIG.formEndpoint, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Success message
+                    this.innerHTML = `
+                        <div class="alert alert-success text-center">
+                            <i class="fas fa-check-circle fa-2x mb-3"></i>
+                            <h4>Děkujeme za Vaši poptávku!</h4>
+                            <p>Ozveme se Vám do 24 hodin s prvními nápady.</p>
+                        </div>
+                    `;
+                    
+                    // Track conversion (Google Analytics)
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'conversion', {
+                            'send_to': CONFIG.gaId + '/form_submission'
+                        });
+                    }
+                } else {
+                    throw new Error('Server error');
+                }
+            })
+            .catch(error => {
+                // Error message
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger mt-3';
+                errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Došlo k chybě. Zkuste to prosím znovu nebo nás kontaktujte telefonicky.';
+                this.appendChild(errorDiv);
+                
+                setTimeout(() => errorDiv.remove(), 5000);
+            });
+        });
+        
+        // Phone number click tracking
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'phone_call', {
+                        'event_category': 'contact',
+                        'event_label': 'header_phone'
+                    });
+                }
+            });
+        });
+        
+        // Performance optimization: Lazy load images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            lazyLoadImages();
+            
+            // Add loading animation to service cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+        
+        // WordPress integration helper functions
+        function initWordPressIntegration() {
+            // Contact form 7 integration
+            if (typeof wpcf7 !== 'undefined') {
+                document.addEventListener('wpcf7mailsent', function(event) {
+                    // Track successful form submission
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'conversion', {
+                            'send_to': CONFIG.gaId + '/contact_form_7'
+                        });
+                    }
+                });
+            }
+        }
+        
+        // Initialize WordPress features if available
+        if (typeof wp !== 'undefined') {
+            initWordPressIntegration();
+        }
+    </script>
+    
+    <!-- Google Analytics (replace GA_MEASUREMENT_ID with your actual ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- Schema.org Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Instalex",
+        "description": "Specializovaná marketingová agentura pro instalatéry a topenáře. Google Ads kampaně, které přivádějí skutečné zakázky.",
+        "url": "https://www.instalex.cz",
+        "telephone": "+420123456789",
+        "email": "info@instalex.cz",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Czech Republic"
+        },
+        "serviceType": [
+            "Google Ads pro instalatéry",
+            "Marketing pro topenáře",
+            "Webové stránky pro řemeslníky",
+            "ROI analýza kampaní"
+        ],
+        "knowsAbout": [
+            "Google Ads",
+            "Instalatérské služby",
+            "Topenářství",
+            "Lokální marketing",
+            "Krizový marketing"
+        ]
+    }
+    </script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" as="style">
+    
+</body>
+</html>
+                                
